@@ -5,13 +5,13 @@ RESERVED_FUNCTIONS = (
     "cos",   "sin",   "tan",
     "cot",   "sec",   "csc",
     "ln",    "log",   "logn",
-    "exp",   "fact",  "sqrt",
-    "cbrt",  "abs",   "ceil",
-    "floor", "cosh",  "sinh",
-    "tanh",  "coth",  "sech",
-    "csch",  "cos_d", "sin_d",
-    "tan_d", "cot_d", "sec_d",
-    "csc_d"
+    "exp",   "sqrt",  "cbrt",
+    "abs",   "floor", "ceil",
+    "cosh",  "sinh",  "tanh",
+    "coth",  "sech",  "csch",
+    "cos_d", "sin_d", "tan_d",
+    "cot_d", "sec_d", "csc_d",
+    "clamp", "min",   "max",
 )
 
 class _ParserError(Exception): ...

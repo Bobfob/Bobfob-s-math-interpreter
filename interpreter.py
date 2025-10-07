@@ -1,4 +1,5 @@
 from parser_ import *
+import math
 
 def factorial(n: int) -> int:
     if isinstance(n, float): raise TypeError(f'Expected type \'int\', but got \'{type(n).__name__}\'')
@@ -8,6 +9,64 @@ def factorial(n: int) -> int:
     elif n == 0: return 1
     
     else: return factorial(n - 1) * n
+
+class ReservedFunctions:
+    @staticmethod
+    def cos(x) -> float: return math.cos(x)
+    @staticmethod
+    def sin(x) -> float: return math.sin(x)
+    @staticmethod
+    def tan(x) -> float: return math.tan(x)
+    @staticmethod
+    def cot(x) -> float: return 1 / math.tan(x)
+    @staticmethod
+    def sec(x) -> float: return 1 / math.cos(x)
+    @staticmethod
+    def csc(x) -> float: return 1 / math.sin(x)
+    @staticmethod
+    def ln(x) -> float: return math.log(x)
+    @staticmethod
+    def log(x) -> float: return math.log10(x)
+    @staticmethod
+    def logn(x, base) -> float: return math.log(x, base)
+    @staticmethod
+    def exp(x) -> float: return math.exp(x)
+    @staticmethod
+    def abs(x) -> float: return abs(x)
+    @staticmethod
+    def ceil(x) -> float: return math.ceil(x)
+    @staticmethod
+    def floor(x) -> float: return math.floor(x)
+    @staticmethod
+    def cosh(x) -> float: return math.cosh(x)
+    @staticmethod
+    def sinh(x) -> float: return math.sinh(x)
+    @staticmethod
+    def tanh(x) -> float: return math.tanh(x)
+    @staticmethod
+    def coth(x) -> float: return 1 / math.tanh(x)
+    @staticmethod
+    def sech(x) -> float: return 1 / math.cosh(x)
+    @staticmethod
+    def csch(x) -> float: return 1 / math.sinh(x)
+    @staticmethod
+    def cos_d(x) -> float: return math.cos(math.radians(x))
+    @staticmethod
+    def sin_d(x) -> float: return math.sin(math.radians(x))
+    @staticmethod
+    def tan_d(x) -> float: return math.tan(math.radians(x))
+    @staticmethod
+    def cot_d(x) -> float: return 1 / math.tan(math.radians(x))
+    @staticmethod
+    def sec_d(x) -> float: return 1 / math.cos(math.radians(x))
+    @staticmethod
+    def csc_d(x) -> float: return 1 / math.sin(math.radians(x))
+    @staticmethod
+    def clamp(x, min_x, max_x) -> int | float: return min(max(x, min_x), max_x)
+    @staticmethod
+    def min(x, y, *args) -> int | float: return min(x, y, *args)
+    @staticmethod
+    def max(x, y, *args) -> int | float: return max(x, y, *args)
 
 class _InterpreterError(Exception): ...
 
@@ -50,9 +109,14 @@ class Interpreter:
     
     def visit_FactorialNode(self, tree: FactorialNode):   return factorial(self.visit(tree.value))
     
+    def evaluate_function_arguments(self, args: list[ExprBase]) -> list[Any]:
+        return [self.visit(arg) for arg in args]
+    
     def visit_FunctionCall(self, tree: FunctionCall):
         if tree.name in RESERVED_FUNCTIONS:
-            ...
+            func_args = self.evaluate_function_arguments(tree.args)
+            cur_method = getattr(ReservedFunctions, tree.name)
+            return cur_method(*func_args)
         
         else:
             raise Exception(f"Invalid name of a function: '{tree.name}'")
