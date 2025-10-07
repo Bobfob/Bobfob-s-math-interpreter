@@ -47,8 +47,8 @@ def main():
             if _print_tokens:
                 print('\nTokens: [')
                 for token in tokens[:-1]:
-                    print('  ', token, ',')
-                print('  ', tokens[-1])
+                    print('  ', token, ',', sep='')
+                print('  ', tokens[-1], sep='')
                 print(']')
 
             par = Parser(tokens)

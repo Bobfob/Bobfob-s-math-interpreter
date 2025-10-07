@@ -32,6 +32,10 @@ class ReservedFunctions:
     @staticmethod
     def exp(x) -> float: return math.exp(x)
     @staticmethod
+    def sqrt(x) -> float: return math.sqrt(x)
+    @staticmethod
+    def cbrt(x) -> float: return math.cbrt(x)
+    @staticmethod
     def abs(x) -> float: return abs(x)
     @staticmethod
     def ceil(x) -> float: return math.ceil(x)
