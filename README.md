@@ -14,7 +14,7 @@ git clone "https://github.com/Bobfob/Bobfob-s-math-interpreter.git"
 
 Next, after you have copied the repository, you need to run the file "main.py" using **Python 3.11** or higher and try to type some expressions into terminal.
 
-> To enable debug you can type commands **.tokens** and **.tree** with flags **-f** or **-t** (that stands for False and True respectively)
+> To enable debug output you can type commands **.tokens** and **.tree** with flags **-f** or **-t** (that stands for False and True respectively)
 
 ## Examples
 
